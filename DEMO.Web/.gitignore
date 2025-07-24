@@ -1,0 +1,37 @@
+# Ignore build output and VS folders
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Ignore IDE & temp settings
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.cache
+*.vscode/
+
+# Ignore ReSharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Ignore Rider IDE settings
+.idea/
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore node modules and packages
+node_modules/
+npm-debug.log
+
+# Publish output
+publish/
+wwwroot/lib/
+
+# Others (optional based on your project)
+*.DS_Store
+*.swp
+*.bak
