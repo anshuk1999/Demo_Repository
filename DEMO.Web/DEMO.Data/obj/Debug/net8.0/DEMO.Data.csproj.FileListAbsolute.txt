@@ -1,0 +1,17 @@
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\bin\Debug\net8.0\DEMO.Data.deps.json
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\bin\Debug\net8.0\DEMO.Data.runtimeconfig.json
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\bin\Debug\net8.0\DEMO.Data.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\bin\Debug\net8.0\DEMO.Data.pdb
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\bin\Debug\net8.0\DEMO.Dto.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\bin\Debug\net8.0\DEMO.Dto.pdb
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.csproj.AssemblyReference.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.AssemblyInfoInputs.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.AssemblyInfo.cs
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.csproj.CoreCompileInputs.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.csproj.Up2Date
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\refint\DEMO.Data.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.pdb
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\DEMO.Data.genruntimeconfig.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Data\obj\Debug\net8.0\ref\DEMO.Data.dll

@@ -1,0 +1,43 @@
+﻿.form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+.form-control-sm {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+}
+
+.btn-sm-custom {
+    font-size: 0.95rem;
+    padding: 0.45rem 1.5rem;
+}
+
+.validation-error {
+    font-size: 0.8rem !important;
+    color: #dc3545 !important;
+    text-transform: none !important;
+    font-weight: 500;
+    display: block;
+}
+
+input.form-control,
+input.form-control-sm,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    text-transform: none !important;
+}
+
+.custom-header-bg {
+    background-color: #e9ecef; /* Slightly darker than bg-light */
+    border-bottom: 1px solid #ced4da;
+}

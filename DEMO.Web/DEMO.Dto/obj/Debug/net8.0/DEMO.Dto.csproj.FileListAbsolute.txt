@@ -1,0 +1,12 @@
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\bin\Debug\net8.0\DEMO.Dto.deps.json
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\bin\Debug\net8.0\DEMO.Dto.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\bin\Debug\net8.0\DEMO.Dto.pdb
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.csproj.AssemblyReference.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.AssemblyInfoInputs.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.AssemblyInfo.cs
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.csproj.CoreCompileInputs.cache
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\refint\DEMO.Dto.dll
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\DEMO.Dto.pdb
+C:\Asp.Net Core MyProject\Code\DEMO.web\DEMO.Dto\obj\Debug\net8.0\ref\DEMO.Dto.dll

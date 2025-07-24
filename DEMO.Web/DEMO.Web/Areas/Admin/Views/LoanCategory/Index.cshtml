@@ -1,0 +1,155 @@
+﻿@model DEMO.Dto.LoanCategoryDto
+@{
+    ViewBag.Title = "Loan Category";
+    Layout = "/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container p-4">
+    <!-- Filter Form -->
+    <form asp-action="Index" asp-controller="LoanCategory" asp-area="Admin" method="post" enctype="multipart/form-data" id="loanCategoryForm">
+        @if (Model.Id > 0)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label>Category</label>
+                <input asp-for="CategoryName" class="form-control" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Sub Category Name</label>
+                <input asp-for="SubCategoryName" class="form-control" />
+            </div>
+
+            <div class="col-md-4">
+                <label>Loan Category Logo</label>
+                <input asp-for="LogoFile" type="file" class="form-control" />
+                <div class="mt-2">
+                    <img id="logoPreview" src="#" alt="Preview" class="img-thumbnail d-none" style="max-height:100px;" />
+                </div>
+            </div>
+
+        </div>
+
+        <input type="hidden" id="existingLogoPath" value="@Model.ExistingLogoPath" />
+
+        <div id="existingLogoWrapper" class="row mb-3 d-none">
+            <div class="col-md-2">
+                <img id="existingLogoImg" src="" alt="Logo" class="img-thumbnail" style="max-height:100px;" />
+            </div>
+        </div>
+
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary px-4">Save</button>
+        </div>
+    </form>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label>Filter by Category</label>
+            <select id="categoryFilter" class="form-control">
+                <option value="">-- All Categories --</option>
+                @foreach (var category in ViewBag.AllCategories as List<string>)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="table-responsive">
+        <table id="loanCategoryTable" class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Sub Category Name</th>
+                    <th>Category Name</th>
+                    <th>Logo</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        let table;
+
+        $(document).ready(function () {
+            // Initialize DataTable with category filter support
+            table = $('#loanCategoryTable').DataTable({
+                ajax: {
+                    url: '/Admin/LoanCategory/GetLoanCategoryData',
+                    data: function (d) {
+                        d.categoryName = $('#categoryFilter').val(); // send selected category to backend
+                    },
+                    dataSrc: 'data'
+                },
+                columns: [
+                    { data: null, render: (data, type, row, meta) => meta.row + 1 },
+                    { data: 'subCategoryName' },
+                    { data: 'categoryName' },
+                    {
+                        data: 'existingLogoPath',
+                        render: function (data) {
+                            return data ? `<img src="${data}" class="img-thumbnail" style="max-height:70px;" />` : '';
+                        }
+                    },
+                    {
+                        data: 'createdDate',
+                        render: function (data) {
+                            const date = new Date(data);
+                            return date.toLocaleDateString('en-GB');
+                        }
+                    },
+                    {
+                        data: 'id',
+                        render: function (data, type, row) {
+                            return `
+                                <a href="/Admin/LoanCategory/Index?id=${data}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <button type="button" class="btn btn-sm btn-info toggleStatusBtn" data-id="${data}">
+                                    ${row.isActive ? 'Active' : 'Inactive'}
+                                </button>`;
+                        }
+                    }
+                ]
+            });
+
+            // 🔥 When filter dropdown changes, reload DataTable
+            $('#categoryFilter').on('change', function () {
+                table.ajax.reload();
+            });
+
+            // Toggle Active/Inactive
+            $(document).on('click', '.toggleStatusBtn', function () {
+                const id = $(this).data('id');
+                const btn = $(this);
+                $.post('/Admin/LoanCategory/ToggleStatus', { id }, function (res) {
+                    if (res.success) {
+                        btn.text(res.newStatus ? 'Active' : 'Inactive');
+                    }
+                });
+            });
+        });
+            document.addEventListener("DOMContentLoaded", function () {
+            const logoPath = document.getElementById("existingLogoPath").value;
+
+            if (logoPath) {
+                const wrapper = document.getElementById("existingLogoWrapper");
+                const img = document.getElementById("existingLogoImg");
+
+                img.src = logoPath;
+                wrapper.classList.remove("d-none"); // Show the image block
+            }
+        });
+
+    </script>
+}
