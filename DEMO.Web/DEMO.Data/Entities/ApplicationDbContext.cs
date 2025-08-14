@@ -17,17 +17,21 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<AdminLogin> AdminLogins { get; set; }
 
+    public virtual DbSet<CategoryName> CategoryNames { get; set; }
+
     public virtual DbSet<LoanCategory> LoanCategories { get; set; }
+
+    public virtual DbSet<Registration> Registrations { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<UserTable> UserTables { get; set; }
+    public virtual DbSet<SubCategoryName> SubCategoryNames { get; set; }
 
     public virtual DbSet<Vehicle> Vehicles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-IQ0K3E5;Database=db_theloanmallm2n;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=LAPTOP-RULCTAQ5\\SQLEXPRESS;Database=db_theloanmallm2n;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,9 +48,22 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
         });
 
+        modelBuilder.Entity<CategoryName>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Category__3214EC072E144699");
+
+            entity.ToTable("Category_Name");
+
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.Status).HasDefaultValue(true);
+        });
+
         modelBuilder.Entity<LoanCategory>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__LoanCate__3214EC07FF1F86ED");
+
+            entity.ToTable("LoanCategory");
 
             entity.Property(e => e.CategoryName).HasMaxLength(100);
             entity.Property(e => e.CreatedDate)
@@ -57,9 +74,36 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.SubCategoryName).HasMaxLength(100);
         });
 
+        modelBuilder.Entity<Registration>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Registra__3214EC073EA39D0C");
+
+            entity.ToTable("Registration");
+
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.City).HasMaxLength(100);
+            entity.Property(e => e.Country).HasMaxLength(100);
+            entity.Property(e => e.District).HasMaxLength(100);
+            entity.Property(e => e.EmployeeEmail).HasMaxLength(150);
+            entity.Property(e => e.EmployeeMobile).HasMaxLength(15);
+            entity.Property(e => e.EmployeeName).HasMaxLength(100);
+            entity.Property(e => e.EmployeeSalary).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.State).HasMaxLength(100);
+
+            entity.HasOne(d => d.Category).WithMany(p => p.Registrations)
+                .HasForeignKey(d => d.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Registration_Category");
+
+            entity.HasOne(d => d.SubCategory).WithMany(p => p.Registrations)
+                .HasForeignKey(d => d.SubCategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Registration_SubCategory");
+        });
+
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE1A99F80374");
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE1A3821DE1D");
 
             entity.ToTable("Role");
 
@@ -67,96 +111,27 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.RoleName).HasMaxLength(100);
         });
 
-        modelBuilder.Entity<UserTable>(entity =>
+        modelBuilder.Entity<SubCategoryName>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UserTabl__3214EC27DAFD2A29");
+            entity.HasKey(e => e.Id).HasName("PK__SubCateg__3214EC07BB188DD3");
 
-            entity.ToTable("UserTable");
+            entity.ToTable("SubCategory_Name");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.AadharBack)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.AadharFront)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.AccountHolderName)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.AccountNumber)
-                .HasMaxLength(30)
-                .IsUnicode(false);
-            entity.Property(e => e.BankName)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.BranchName)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-            entity.Property(e => e.CurrentAddress)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.CurrentCity)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.CurrentDistrict)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.CurrentPincode)
-                .HasMaxLength(10)
-                .IsUnicode(false);
-            entity.Property(e => e.CurrentState)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.EmailId)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.Ifsccode)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("IFSCCode");
-            entity.Property(e => e.MemberId)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.MobileNumber)
-                .HasMaxLength(15)
-                .IsUnicode(false);
-            entity.Property(e => e.Name)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.PanCard)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.Passbook)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.Password)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.PermanentAddress)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.PermanentCity)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.PermanentDistrict)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.PermanentPincode)
-                .HasMaxLength(10)
-                .IsUnicode(false);
-            entity.Property(e => e.PermanentState)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.Photo)
-                .HasMaxLength(255)
-                .IsUnicode(false);
-            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Status).HasDefaultValue(true);
+            entity.Property(e => e.SubName).HasMaxLength(100);
+
+            entity.HasOne(d => d.Category).WithMany(p => p.SubCategoryNames)
+                .HasForeignKey(d => d.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SubCategory_Category");
         });
 
         modelBuilder.Entity<Vehicle>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Vehicles__3214EC07A566E403");
+            entity.HasKey(e => e.Id).HasName("PK__Vehicle__3214EC07E01EC946");
+
+            entity.ToTable("Vehicle");
 
             entity.Property(e => e.AuthorizedNameAlt).HasMaxLength(100);
             entity.Property(e => e.AuthorizedNamePan).HasMaxLength(100);

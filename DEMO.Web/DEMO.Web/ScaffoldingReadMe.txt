@@ -12,7 +12,7 @@ Add the following code to the Configure method in your Application's Startup cla
         });
 
 WRONG VERSION OF THE COMMAND
-Scaffold-DbContext "Server=DESKTOP-IQ0K3E5;Database=db_theloanmallm2n;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Context ApplicationDbContext -Project DEMO.Data -Force
+Scaffold-DbContext "Server=LAPTOP-RULCTAQ5\SQLEXPRESS;Database=db_theloanmallm2n;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Context ApplicationDbContext -Project DEMO.Data -Force
 
 RIGHT VERSION OF THE COMMAND
-Scaffold-DbContext "Server=DESKTOP-IQ0K3E5;Database=db_theloanmallm2n;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Context ApplicationDbContext -Project DEMO.Data -StartupProject DEMO.Data -Force
+Scaffold-DbContext "Server=LAPTOP-RULCTAQ5\SQLEXPRESS;Database=db_theloanmallm2n;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Context ApplicationDbContext -Project DEMO.Data -StartupProject DEMO.Data -Force

@@ -1,0 +1,106 @@
+﻿@model DEMO.Data.Entities.Vehicle
+@{
+    ViewBag.Title = "Firm Document";
+    Layout = "/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5>📁 Firm Documents</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="firmDocumentTable" class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Document Type</th>
+                            <th>Authorized Name</th>
+                            <th>Authorized Number</th>
+                            <th>Expiry Date</th>
+                            <th>Reminder Day</th>
+                            <th>File</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!string.IsNullOrEmpty(Model.FileUploadPan))
+                        {
+                            <tr>
+                                <td>PAN</td>
+                                <td>@Model.AuthorizedNamePan</td>
+                                <td>@Model.AuthorizedNumberPan</td>
+                                <td>@Model.ExpiryDatePan?.ToString("dd-MM-yyyy")</td>
+                                <td>@Model.ReminderDayPan</td>
+                                <td>
+                                    <img src="@Url.Content(Model.FileUploadPan)" alt="PAN Document" width="100" class="img-thumbnail" />
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Vehicle" asp-action="Add" asp-route-id="@Model.Id" asp-route-section="documents" class="btn btn-sm btn-outline-primary">EDIT</a>
+                                </td>
+                            </tr>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.FileUploadRc))
+                        {
+                            <tr>
+                                <td>RC</td>
+                                <td>@Model.AuthorizedNameRc</td>
+                                <td>@Model.RcNumber</td>
+                                <td>@Model.ExpiryDateRc?.ToString("dd-MM-yyyy")</td>
+                                <td>@Model.ReminderDayRc</td>
+                                <td>
+                                    <img src="@Url.Content(Model.FileUploadRc)" alt="RC Document" width="100" class="img-thumbnail" />
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Vehicle" asp-action="Add" asp-route-id="@Model.Id" asp-route-section="documents" class="btn btn-sm btn-outline-primary">EDIT</a>
+                                </td>
+                            </tr>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.FileUploadAlt))
+                        {
+                            <tr>
+                                <td>ALT</td>
+                                <td>@Model.AuthorizedNameAlt</td>
+                                <td>@Model.AuthorizedNumberAlt</td>
+                                <td>@Model.ExpiryDateAlt?.ToString("dd-MM-yyyy")</td>
+                                <td>@Model.ReminderDayAlt</td>
+                                <td>
+                                    <img src="@Url.Content(Model.FileUploadAlt)" alt="ALT Document" width="100" class="img-thumbnail" />
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Vehicle" asp-action="Add" asp-route-id="@Model.Id" asp-route-section="documents" class="btn btn-sm btn-outline-primary">EDIT</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#firmDocumentTable').DataTable({
+                paging: true,
+                searching: true,
+                info: true,
+                lengthMenu: [5, 10, 25, 50],
+                pageLength: 10,
+                language: {
+                    search: "Search Document:",
+                    lengthMenu: "Show _MENU_ entries",
+                    info: "Showing _START_ to _END_ of _TOTAL_ entries"
+                }
+            });
+        });
+    </script>
+}

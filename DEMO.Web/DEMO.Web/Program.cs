@@ -17,6 +17,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IAdminLoginRepository, AdminLoginRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<ILoanCategoryRepository, LoanCategoryRepository>();
+builder.Services.AddScoped<ICategoryPageRepository, CategoryPageRepository>();
+builder.Services.AddScoped<ISubCategoryPageRepository, SubCategoryPageRepository>();
+builder.Services.AddScoped<ICommonRepository, CommonRepository>();
+builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
 
 // ✅ Add Scoped Services-------------
 builder.Services.AddScoped<IAdminAuthService, AdminAuthService>();
@@ -24,6 +28,12 @@ builder.Services.AddScoped<IAdminAuthService, AdminAuthService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 builder.Services.AddScoped<ILoanCategoryService, LoanCategoryService>();
+
+builder.Services.AddScoped<ICategoryPageService, CategoryPageService>();
+
+builder.Services.AddScoped<ISubCategoryPageService, SubCategoryPageService>();
+
+builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 
 // ✅ Add AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
