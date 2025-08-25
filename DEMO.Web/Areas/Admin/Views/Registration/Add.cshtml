@@ -20,13 +20,13 @@
     <div class="row">
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeName"></label>
-            <input asp-for="EmployeeName" class="form-control" />
+            <input asp-for="EmployeeName" type="text" class="form-control" required />
             <span asp-validation-for="EmployeeName" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeAge"></label>
-            <input asp-for="EmployeeAge" type="number" class="form-control" />
+            <input asp-for="EmployeeAge" type="number" min="18" max="100" class="form-control" required />
             <span asp-validation-for="EmployeeAge" class="text-danger"></span>
         </div>
     </div>
@@ -34,13 +34,13 @@
     <div class="row">
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeEmail"></label>
-            <input asp-for="EmployeeEmail" type="email" class="form-control" />
+            <input asp-for="EmployeeEmail" type="email" class="form-control" required />
             <span asp-validation-for="EmployeeEmail" class="text-danger"></span>
         </div>
 
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeMobile"></label>
-            <input asp-for="EmployeeMobile" type="tel" class="form-control" />
+            <input asp-for="EmployeeMobile" type="tel" pattern="\d{10}" maxlength="10" class="form-control" required />
             <span asp-validation-for="EmployeeMobile" class="text-danger"></span>
         </div>
     </div>
@@ -63,29 +63,29 @@
 
     <div class="form-group">
         <label asp-for="Address"></label>
-        <input asp-for="Address" class="form-control" />
+        <input asp-for="Address" type="text" class="form-control" required />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
     <div class="row">
         <div class="col-md-3 form-group">
             <label asp-for="City"></label>
-            <input asp-for="City" class="form-control" />
+            <input asp-for="City" type="text" class="form-control" required />
             <span asp-validation-for="City" class="text-danger"></span>
         </div>
         <div class="col-md-3 form-group">
             <label asp-for="District"></label>
-            <input asp-for="District" class="form-control" />
+            <input asp-for="District" type="text" class="form-control" required />
             <span asp-validation-for="District" class="text-danger"></span>
         </div>
         <div class="col-md-3 form-group">
             <label asp-for="State"></label>
-            <input asp-for="State" class="form-control" />
+            <input asp-for="State" type="text" class="form-control" required />
             <span asp-validation-for="State" class="text-danger"></span>
         </div>
         <div class="col-md-3 form-group">
             <label asp-for="Country"></label>
-            <input asp-for="Country" class="form-control" />
+            <input asp-for="Country" type="text" class="form-control" required />
             <span asp-validation-for="Country" class="text-danger"></span>
         </div>
     </div>
