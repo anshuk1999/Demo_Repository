@@ -16,7 +16,7 @@
     <div class="alert alert-danger">@TempData["Error"]</div>
 }
 
-<form asp-action="Add" method="post">
+<form asp-action="Add" method="post" novalidate>
     <div class="row">
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeName"></label>
@@ -26,7 +26,7 @@
 
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeAge"></label>
-            <input asp-for="EmployeeAge" type="number" min="18" max="100" class="form-control" required />
+            <input asp-for="EmployeeAge" type="number" class="form-control" required />
             <span asp-validation-for="EmployeeAge" class="text-danger"></span>
         </div>
     </div>
@@ -40,7 +40,7 @@
 
         <div class="col-md-6 form-group">
             <label asp-for="EmployeeMobile"></label>
-            <input asp-for="EmployeeMobile" type="tel" pattern="\d{10}" maxlength="10" class="form-control" required />
+            <input asp-for="EmployeeMobile" type="tel" class="form-control" required />
             <span asp-validation-for="EmployeeMobile" class="text-danger"></span>
         </div>
     </div>
