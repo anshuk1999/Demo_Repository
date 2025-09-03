@@ -46,7 +46,7 @@ namespace DEMO.Web.Areas.Admin.Controllers
                 TempData["PopupType"] = "success";
 
                 // Redirect to admin home to avoid showing popup on reload
-                return RedirectToAction("Home", "Dashboard", new { area = "Admin" });
+                return RedirectToAction("Add", "SubCategoryPage", new { area = "Admin" });
             }
             else
             {
