@@ -27,8 +27,8 @@ namespace DEMO.Services
             var admin = await _repo.GetByEmailAsync(dto.EmailId);
             if (admin == null)
                 return null;
-            //if (admin == null || !BCrypt.Net.BCrypt.Verify(dto.Password, admin.Password))
-            //    return null;
+            if (admin == null || !BCrypt.Net.BCrypt.Verify(dto.Password, admin.Password))
+                return null;
 
             return new AdminLoginResponseDto
             {

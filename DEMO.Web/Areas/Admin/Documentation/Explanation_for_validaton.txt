@@ -1,0 +1,62 @@
+﻿Perfect 👍 You’ve basically got two layers of validation working together:
+
+🔹 1. Frontend / Client-Side Validation
+
+This is happening in three ways:
+
+JavaScript/jQuery restriction
+
+$(document).ready(function () {
+    // Numbers only
+    $(".numbers-only").on("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    // Letters + spaces only
+    $(".letters-only").on("input", function () {
+        this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+    // Mobile number (digits only, max 10)
+    $(".mobile-only").on("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, ''); // remove non-digits
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10); // cut off after 10
+        }
+    });
+});
+
+👉 This only filters keystrokes as the user types.
+Example: If I type abc123, it will instantly remove abc and keep only 123.
+
+This makes the input “feel” smoother, but it doesn’t know about rules like “must be exactly 10 digits” or “between 18–100”.
+So we need more validation...
+
+🔹 2. Unobtrusive Validation (ASP.NET’s built-in JS)
+That _ValidationScriptsPartial you included is pulling in:
+
+jquery.validate.js
+
+jquery.validate.unobtrusive.js
+
+Those scripts read the DataAnnotations from your RegistrationDto and automatically attach validation rules to your inputs.
+
+Example from your DTO:
+[RegularExpression(@"^\d{10}$", ErrorMessage = "Mobile number must be 10 digits")]
+public string EmployeeMobile { get; set; } = null!;
+👉 This is why you see the custom error message if you try to submit a number shorter/longer than 10 digits.
+Same for:
+[Range(18, 100, ErrorMessage = "Age must be between 18 and 100")]
+public int EmployeeAge { get; set; }
+👉 If you type 12, you’ll get the red error message immediately before it even goes to the server.
+
+🔹 3. Backend / Server-Side Validation
+
+Even if the user disables JavaScript in their browser (or tries to bypass with an API tool like Postman), your RegistrationDto still enforces the rules when the form is submitted to your controller.
+
+The model binder checks DataAnnotations.
+
+If validation fails → ModelState.IsValid == false in your controller.
+
+You can return the same view with validation messages.
+
+That’s why both client-side and server-side validation are in sync.
